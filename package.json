@@ -7,7 +7,7 @@
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
     "install:all": "cd server && npm install && cd ../client && npm install",
-    "build": "npm install && cd server && npm install && cd ../client && npm install && npx vite build",
+    "build": "npm install && cd server && npm install && cd ../client && npm install && npm run build",
     "start": "cd server && npm start",
     "deploy:prepare": "npm run install:all && npm run build",
     "deploy:railway": "railway up",

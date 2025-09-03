@@ -18,7 +18,6 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'antd-vendor': ['antd', '@ant-design/icons'],
           'socket-vendor': ['socket.io-client'],
-          'webrtc-vendor': ['simple-peer'],
           'utils': ['zustand', 'axios'],
         }
       }
@@ -29,7 +28,7 @@ export default defineConfig({
     minify: 'esbuild',
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'antd', 'socket.io-client', 'simple-peer']
+    include: ['react', 'react-dom', 'antd', 'socket.io-client']
   },
   resolve: {
     alias: {
