@@ -20,8 +20,9 @@ const io = new Server(server, {
     origin: [
       process.env.SOCKET_CORS_ORIGIN || 'http://localhost:5173',
       'http://localhost:5174',
-      'http://localhost:5175'
-    ],
+      'http://localhost:5175',
+      process.env.RENDER_EXTERNAL_URL
+    ].filter(Boolean),
     credentials: true
   },
   path: '/ws/socket.io'

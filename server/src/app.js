@@ -33,8 +33,9 @@ app.use(cors({
     'http://localhost:5175',
     'http://localhost:5176',
     'http://localhost:5177',
-    'http://localhost:5178'
-  ],
+    'http://localhost:5178',
+    process.env.RENDER_EXTERNAL_URL
+  ].filter(Boolean),
   credentials: true
 }));
 
@@ -72,6 +73,17 @@ app.use('/api/conversations', conversationRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/uploads', uploadRoutes);
+
+// Serve static files from React build (production only)
+if (process.env.NODE_ENV === 'production') {
+  const clientBuildPath = path.join(__dirname, '../../client/dist');
+  app.use(express.static(clientBuildPath));
+  
+  // Handle React routing, return all requests to React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(clientBuildPath, 'index.html'));
+  });
+}
 
 // Error handling
 app.use(errorHandler);
